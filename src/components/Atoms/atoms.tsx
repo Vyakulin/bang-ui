@@ -67,7 +67,7 @@ export function InputText({
   },
 } : Props
 ) {
-  let [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const change = (event: any) => {
     event.target.value == '' ? setIsValid(false) : setIsValid(true);
   }
