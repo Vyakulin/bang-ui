@@ -127,11 +127,15 @@
   span {
     color: inherit
   }
+  &.valid span, &:focus-within span  {
+    @extend .sm;
+    margin-top: -14rem;
+    margin-left: -4rem;
+  }
   &:focus-within {
+    @include bg(v.$a, v.$w);
+    @include bg-hover(v.$a2, v.$b);
     span {
-      @extend .sm;
-      margin-top: -14rem;
-      margin-left: -4rem;
       color: v.$a;
     }
     @media (pointer: fine) {
@@ -147,8 +151,28 @@
 .input-bg-w {
   @include bg(v.$w, v.$b);
   @include bg-hover(v.$w2, v.$b2);
-  &:focus-within {
-    @include bg(v.$a, v.$w);
-    @include bg-hover(v.$a2, v.$b);
+  &.valid span {
+    color: v.$w;
+  }
+  @media (pointer: fine) {
+    &:hover {
+      span {
+        color: v.$w2;
+      }
+    }
+  }
+}
+.input-bg-b {
+  @include bg(v.$b, v.$w);
+  @include bg-hover(v.$b2, v.$w2);
+  &.valid span {
+    color: v.$b;
+  }
+  @media (pointer: fine) {
+    &:hover {
+      span {
+        color: v.$b2;
+      }
+    }
   }
 }

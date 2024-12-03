@@ -1,4 +1,4 @@
-import { Button, Color, Style, Text, Input } from "@/components/Atoms/atoms";
+import { Button, Color, Style, Text, InputText } from "@/components/Atoms/atoms";
 import './style.scss';
 import { HiCheck } from "react-icons/hi2";
 
@@ -61,12 +61,14 @@ export default function Home() {
       <h1 className="h1">Inputs</h1>
       <div className="elements">
         <div className="white">
-          <Input.Text p={{ icon: <HiCheck />, name: 'test'}}>
+          <InputText style={Style.bg} color={Color.w} p={{ icon: <HiCheck />, name: 'test'}}>
             Input
-          </Input.Text>
+          </InputText>
         </div>
         <div className="black">
-          
+          <InputText style={Style.bg} color={Color.b} p={{ icon: <HiCheck />, name: 'test'}}>
+            Input
+          </InputText>
         </div>
       </div>
     </div>

@@ -1,5 +1,8 @@
+'use client';
+
 import clsx from "clsx";
 import '@/components/Atoms/style.scss';
+import { useState } from "react";
 
 export enum Style {
   bg = 'bg',
@@ -52,27 +55,32 @@ export function Button({
   )
 }
 
-export const Input = {
-  Text: ({
-    children, 
-    style = Style.bg,
-    color = Color.w,
-    text = Text.h3,
-    className,
-    id,
-    p = {
-      icon: null,
-    },
-  } : Props) => {
-    return (
-      <label className={clsx({
-        [`input input-${style}-${color} ${text} ${className}`]: true,
-      })}
-      {...p}>
-        <span>{children}</span>
-        {p.icon}
-        <input type="text" name={p.name} id={id} />
-      </label>
-    )
+export function InputText({
+  children, 
+  style = Style.bg,
+  color = Color.w,
+  text = Text.h3,
+  className,
+  id,
+  p = {
+    icon: null,
+  },
+} : Props
+) {
+  let [isValid, setIsValid] = useState(false);
+  const change = (event: any) => {
+    event.target.value == '' ? setIsValid(false) : setIsValid(true);
   }
+
+  return (
+    <label className={clsx({
+      [`input input-${style}-${color} ${text} ${className}`]: true,
+      [`valid`]: isValid,
+    })}
+    {...p}>
+      <span>{children}</span>
+      {p.icon}
+      <input type="text" name={p.name} id={id} onChange={change}/>
+    </label>
+  )
 }
