@@ -124,14 +124,13 @@
       outline: none;
     }
   }
-  span {
-    color: inherit
-  }
   &.valid span, &:focus-within span  {
     @extend .sm;
     margin-top: -14rem;
     margin-left: -4rem;
   }
+}
+.input-bg {
   &:focus-within {
     @include bg(v.$a, v.$w);
     @include bg-hover(v.$a2, v.$b);
@@ -147,7 +146,12 @@
     }
   }
 }
-
+.input-ol {
+  &:focus-within {
+    @include ol(v.$a);
+    @include ol-hover(v.$a2);
+  }
+}
 .input-bg-w {
   @include bg(v.$w, v.$b);
   @include bg-hover(v.$w2, v.$b2);
@@ -155,10 +159,8 @@
     color: v.$w;
   }
   @media (pointer: fine) {
-    &:hover {
-      span {
-        color: v.$w2;
-      }
+    &.valid:hover span {
+      color: v.$w2;
     }
   }
 }
@@ -169,10 +171,16 @@
     color: v.$b;
   }
   @media (pointer: fine) {
-    &:hover {
-      span {
-        color: v.$b2;
-      }
+    &.valid:hover span {
+      color: v.$b2;
     }
   }
+}
+.input-ol-w {
+  @include ol(v.$w);
+  @include ol-hover(v.$w2);
+}
+.input-ol-b {
+  @include ol(v.$b);
+  @include ol-hover(v.$b2);
 }

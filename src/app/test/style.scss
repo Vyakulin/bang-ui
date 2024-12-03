@@ -16,8 +16,8 @@ body {
     gap: 8rem;
     .white, .black {
       display: flex;
-      gap: 6rem;
-      padding: 3rem;
+      gap: 4rem;
+      padding: 6rem;
       border-radius: v.$radius + 3rem;
       flex-direction: column;
     }

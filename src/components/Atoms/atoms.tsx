@@ -4,52 +4,27 @@ import clsx from "clsx";
 import '@/components/Atoms/style.scss';
 import { useState } from "react";
 
-export enum Style {
-  bg = 'bg',
-  ol = 'ol',
-}
-
-export enum Color {
-  w = 'w',
-  w2 = 'w2',
-  b = 'b',
-  b2 = 'b2',
-  a = 'a',
-}
-
-export enum Text {
-  h1 = 'h1',
-  h2 = 'h2',
-  h3 = 'h3',
-  p = 'p',
-  sm = 'sm',
-}
-
 interface Props {
   children?: React.ReactNode,
-  style?: Style,
-  color?: Color,
-  text?: Text,
+  style?: string,
+  color?: string,
+  text?: string,
   className?: string,
-  id?: string,
   p?: any
 }
 
 export function Button({
   children, 
-  style = Style.bg,
-  color = Color.w,
-  text = Text.h3,
+  style = 'bg',
+  color = 'w',
+  text = 'h3',
   className,
-  id,
-  p,
 } : Props
 ) {
   return (
-    <div id={id} className={clsx({
+    <div className={clsx({
       [`button button-${style}-${color} ${text} ${className}`]: true,
-    })}
-    {...p}>
+    })}>
       {children}
     </div>
   )
@@ -57,14 +32,13 @@ export function Button({
 
 export function InputText({
   children, 
-  style = Style.bg,
-  color = Color.w,
-  text = Text.h3,
+  style = 'bg',
+  color = 'w',
+  text = 'h3',
   className,
-  id,
   p = {
-    icon: null,
-  },
+    icon: <h3 className={text} style={{opacity: 0}}>.</h3>,
+  }
 } : Props
 ) {
   const [isValid, setIsValid] = useState(false);
@@ -74,13 +48,12 @@ export function InputText({
 
   return (
     <label className={clsx({
-      [`input input-${style}-${color} ${text} ${className}`]: true,
+      [`input input-${style} input-${style}-${color} ${text} ${className}`]: true,
       [`valid`]: isValid,
-    })}
-    {...p}>
+    })}>
       <span>{children}</span>
       {p.icon}
-      <input type="text" name={p.name} id={id} onChange={change}/>
+      <input type="text" onChange={change}/>
     </label>
   )
 }
