@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
+import './globals.scss';
 
 const sfBold = localFont({
   src: '../fonts/SF-Pro-Display-Bold.otf',

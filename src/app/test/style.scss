@@ -1,0 +1,31 @@
+@use '@/v.scss';
+
+body {
+  background-color: #808080;
+}
+.test {
+  display: flex;
+  gap: 20rem;
+}
+.section {
+  display: flex;
+  gap: 8rem;
+  flex-direction: column;
+  .elements {
+    display: flex;
+    gap: 8rem;
+    .white, .black {
+      display: flex;
+      gap: 6rem;
+      padding: 3rem;
+      border-radius: v.$radius + 3rem;
+      flex-direction: column;
+    }
+    .white {
+      background-color: v.$b;
+    }
+    .black {
+      background-color: v.$w;
+    }
+  }
+}

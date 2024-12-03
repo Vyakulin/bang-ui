@@ -1,0 +1,154 @@
+@use '@/v.scss';
+
+* {
+  transition: all .25s ease-out;
+}
+
+// Text
+@mixin text($n, $font) {
+  font-size: 2rem * $n;
+  font-family: var($font);
+  line-height: 1;
+}
+.h1 {
+  @include text(5, --sfBold);
+}
+.h2 {
+  @include text(4, --sfSemibold);
+}
+.h3 {
+  @include text(3, --sfMedium);
+}
+.p {
+  @include text(2, --sfRegular);
+}
+.sm {
+  @include text(1.5, --sfRegular);
+}
+
+// Elements
+@mixin bg($bg, $color) {
+  background-color: $bg;
+  color: $color;
+}
+@mixin bg-hover($bg, $color) {
+  @media (pointer: fine) {
+    &:hover {
+      @include bg($bg, $color);
+    }
+  }
+}
+@mixin ol($color) {
+  outline-offset: -1 * v.$outlineWidth;
+  outline-width: v.$outlineWidth;
+  outline-style: solid;
+  outline-color: $color;
+  color: $color;
+}
+@mixin ol-hover($color) {
+  @media (pointer: fine) {
+    &:hover {
+      @include ol($color);
+    }
+  }
+}
+
+// Buttons
+.button {
+  display: inline-flex;
+  padding: 2rem 4rem;
+  border-radius: v.$radius;
+  cursor: pointer;
+  gap: 2rem;
+  align-items: center
+}
+
+.button-bg-w {
+  @include bg(v.$w, v.$b);
+  @include bg-hover(v.$w2, v.$b2);
+}
+.button-bg-w2 {
+  @include bg(v.$w, v.$b);
+  @include bg-hover(v.$a, v.$w);
+}
+.button-bg-b {
+  @include bg(v.$b, v.$w);
+  @include bg-hover(v.$b2, v.$w2);
+}
+.button-bg-b2 {
+  @include bg(v.$b, v.$w);
+  @include bg-hover(v.$a, v.$w);
+}
+.button-bg-a {
+  @include bg(v.$a, v.$w);
+  @include bg-hover(v.$a2, v.$b);
+}
+.button-ol-w {
+  @include ol(v.$w);
+  @include ol-hover(v.$w2);
+}
+.button-ol-w2 {
+  @include ol(v.$w);
+  @include ol-hover(v.$a);
+}
+.button-ol-b {
+  @include ol(v.$b);
+  @include ol-hover(v.$b2);
+}
+.button-ol-b2 {
+  @include ol(v.$b);
+  @include ol-hover(v.$a);
+}
+.button-ol-a {
+  @include ol(v.$a);
+  @include ol-hover(v.$a2);
+}
+
+.input {
+  display: inline-flex;
+  padding: 2rem 4rem;
+  border-radius: v.$radius;
+  cursor: text;
+  justify-content: space-between;
+  align-items: center;
+  --width: 50rem;
+  width: var(--width);
+  input {
+    position: absolute;
+    font: inherit;
+    color: inherit;
+    width: calc(var(--width) - 6rem);
+    background-color: transparent;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  span {
+    color: inherit
+  }
+  &:focus-within {
+    span {
+      @extend .sm;
+      margin-top: -14rem;
+      margin-left: -4rem;
+      color: v.$a;
+    }
+    @media (pointer: fine) {
+      &:hover {
+        span {
+          color: v.$a2;
+        }
+      }
+    }
+  }
+}
+
+.input-bg-w {
+  @include bg(v.$w, v.$b);
+  @include bg-hover(v.$w2, v.$b2);
+  &:focus-within {
+    @include bg(v.$a, v.$w);
+    @include bg-hover(v.$a2, v.$b);
+  }
+}
