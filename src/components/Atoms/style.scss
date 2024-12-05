@@ -67,18 +67,6 @@
   @include bg(v.$w, v.$b);
   @include bg-hover(v.$w2, v.$b2);
 }
-.button-bg-w2 {
-  @include bg(v.$w, v.$b);
-  @include bg-hover(v.$a, v.$w);
-}
-.button-bg-b {
-  @include bg(v.$b, v.$w);
-  @include bg-hover(v.$b2, v.$w2);
-}
-.button-bg-b2 {
-  @include bg(v.$b, v.$w);
-  @include bg-hover(v.$a, v.$w);
-}
 .button-bg-a {
   @include bg(v.$a, v.$w);
   @include bg-hover(v.$a2, v.$b);
@@ -87,23 +75,12 @@
   @include ol(v.$w);
   @include ol-hover(v.$w2);
 }
-.button-ol-w2 {
-  @include ol(v.$w);
-  @include ol-hover(v.$a);
-}
-.button-ol-b {
-  @include ol(v.$b);
-  @include ol-hover(v.$b2);
-}
-.button-ol-b2 {
-  @include ol(v.$b);
-  @include ol-hover(v.$a);
-}
 .button-ol-a {
   @include ol(v.$a);
   @include ol-hover(v.$a2);
 }
 
+// InputText
 .input {
   display: inline-flex;
   padding: 2rem 4rem;
@@ -125,12 +102,35 @@
     }
   }
   &.valid span, &:focus-within span  {
-    @extend .sm;
-    margin-top: -14rem;
-    margin-left: -4rem;
+    opacity: 0;
   }
 }
+.input-hint {
+  @extend .input;
+  &.valid span, &:focus-within span  {
+    @extend .sm;
+    margin-top: -16rem;
+    margin-left: -4rem;
+    opacity: 1;
+  }
+}
+.input-password {
+  .eye {
+    cursor: pointer;
+  }
+}
+
 .input-bg {
+  @include bg(v.$w, v.$b);
+  @include bg-hover(v.$w2, v.$b2);
+  &.valid span {
+    color: v.$w;
+  }
+  @media (pointer: fine) {
+    &.valid:hover span {
+      color: v.$w2;
+    }
+  }
   &:focus-within {
     @include bg(v.$a, v.$w);
     @include bg-hover(v.$a2, v.$b);
@@ -147,40 +147,78 @@
   }
 }
 .input-ol {
+  @include ol(v.$w);
+  @include ol-hover(v.$w2);
   &:focus-within {
     @include ol(v.$a);
     @include ol-hover(v.$a2);
   }
 }
-.input-bg-w {
+
+// Checkbox
+.checkbox {
+  cursor: pointer;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 1rem;
+  input {
+    opacity: 0;
+    position: absolute;
+  }
+  svg {
+    opacity: 0;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+  &:hover svg, &:has(input:checked) svg {
+    opacity: 1;
+  }
+}
+
+.checkbox-bg {
   @include bg(v.$w, v.$b);
   @include bg-hover(v.$w2, v.$b2);
-  &.valid span {
-    color: v.$w;
-  }
-  @media (pointer: fine) {
-    &.valid:hover span {
-      color: v.$w2;
-    }
+  &:has(input:checked) {
+    @include bg(v.$a, v.$w);
+    @include bg-hover(v.$a2, v.$b);
   }
 }
-.input-bg-b {
-  @include bg(v.$b, v.$w);
-  @include bg-hover(v.$b2, v.$w2);
-  &.valid span {
-    color: v.$b;
-  }
-  @media (pointer: fine) {
-    &.valid:hover span {
-      color: v.$b2;
-    }
-  }
-}
-.input-ol-w {
+.checkbox-ol {
   @include ol(v.$w);
   @include ol-hover(v.$w2);
+  &:has(input:checked) {
+    @include ol(v.$a);
+    @include ol-hover(v.$a2);
+  }
 }
-.input-ol-b {
-  @include ol(v.$b);
-  @include ol-hover(v.$b2);
+
+// Radio
+.radio {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  cursor: pointer;
+  input {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer
+  }
+}
+
+.radio-bg {
+  @include bg(v.$w, v.$b);
+  @include bg-hover(v.$w2, v.$b2);
+  &:has(input:checked) {
+    @include bg(v.$a, v.$w);
+    @include bg-hover(v.$a2, v.$b);
+  }
+}
+.radio-ol {
+  @include ol(v.$w);
+  @include ol-hover(v.$w2);
+  &:has(input:checked) {
+    @include ol(v.$a);
+    @include ol-hover(v.$a2);
+  }
 }

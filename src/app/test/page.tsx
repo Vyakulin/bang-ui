@@ -1,4 +1,4 @@
-import { Button, InputText } from "@/components/Atoms/atoms";
+import { Button, InputText, InputPassword, Checkbox, Radio } from "@/components/Atoms/atoms";
 import './style.scss';
 import { HiCheck } from "react-icons/hi2";
 
@@ -15,68 +15,31 @@ export default function Home() {
     <div className="section">
       <h1 className="h1">Buttons</h1>
       <div className="elements">
-        <div className="white">
-          <Button style='bg' color='w'>
-            Button<HiCheck />
-          </Button>
-          <Button style='bg' color='w2'>
-            Button<HiCheck />
-          </Button>
-          <Button style='bg' color='a'>
-            Button<HiCheck />
-          </Button>
-          <Button style='ol' color='w'>
-            Button<HiCheck />
-          </Button>
-          <Button style='ol' color='w2'>
-            Button<HiCheck />
-          </Button>
-          <Button style='ol' color='a'>
-            Button<HiCheck />
-          </Button>
-        </div>
-        <div className="black">
-          <Button style='bg' color='b'>
-            Button<HiCheck />
-          </Button>
-          <Button style='bg' color='b2'>
-            Button<HiCheck />
-          </Button>
-          <Button style='bg' color='a'>
-            Button<HiCheck />
-          </Button>
-          <Button style='ol' color='b'>
-            Button<HiCheck />
-          </Button>
-          <Button style='ol' color='b2'>
-            Button<HiCheck />
-          </Button>
-          <Button style='ol' color='a'>
-            Button<HiCheck />
-          </Button>
-        </div>
+        <Button style="bg" color="w">Button<HiCheck /></Button>
+        <Button style="bg" color="a">Button<HiCheck /></Button>
+      </div>
+      <div className="elements">
+        <Button style="ol" color="w">Button<HiCheck /></Button>
+        <Button style="ol" color="a">Button<HiCheck /></Button>
       </div>
     </div>
     <div className="section">
       <h1 className="h1">Inputs</h1>
       <div className="elements">
-        <div className="white">
-          <InputText style='bg' color='w' p={{icon: <HiCheck/>}}>
-            Input
-          </InputText>
-          <InputText style='ol' color='w' p={{icon: <HiCheck/>}}>
-            Input
-          </InputText>
-        </div>
-        <div className="black">
-          <InputText style='bg' color='b' >
-            Input
-          </InputText>
-          <InputText style='ol' color='b' >
-            Input
-          </InputText>
-        </div>
+        <InputPassword style="bg">Password</InputPassword>
+        <InputPassword style="ol">Password</InputPassword>
       </div>
+      <div className="elements">
+        <InputPassword style="bg" hint>PasswordHint</InputPassword>
+        <InputPassword style="ol" hint>PasswordHint</InputPassword>
+      </div>
+    </div>
+    <div className="section">
+      <h1 className="h1">Checkboxes</h1>
+      <Checkbox style='bg'/>
+      <Checkbox style='ol'/>
+      <Radio style='bg' name="test"/>
+      <Radio style='ol' name="test"/>
     </div>
    </div>
   );
