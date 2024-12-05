@@ -4,6 +4,8 @@ import clsx from "clsx";
 import '@/components/Atoms/style.scss';
 import { MouseEventHandler, useState } from "react";
 import { HiCheck, HiEye, HiEyeSlash } from "react-icons/hi2";
+import Link from "next/link";
+import { Url } from "next/dist/shared/lib/router/router";
 
 interface Props {
   children?: React.ReactNode,
@@ -11,10 +13,15 @@ interface Props {
   color?: string,
   text?: string,
   className?: string,
-  icon?: any,
+  icon?: React.ReactNode,
   hint?: boolean,
   name?: string,
   onClick?: MouseEventHandler,
+  type?: string,
+}
+
+interface Link extends Props {
+  href: Url,
 }
 
 export function Button({
@@ -29,9 +36,29 @@ export function Button({
   return (
     <div className={clsx({
       [`button button-${style}-${color} ${text} ${className}`]: true,
-    })} onClick={onClick}>
+    })} 
+    onClick={onClick}>
       {children}
     </div>
+  )
+}
+
+export function Lnk({
+  children, 
+  style = '',
+  color = 'w',
+  text = 'h3',
+  className,
+  href,
+} : Link
+) {
+  return (
+    <Link href={href} 
+    className={clsx({
+      [`link${style} link-${color} ${text} ${className}`]: true,
+    })}>
+      {children}
+    </Link>
   )
 }
 
@@ -103,7 +130,7 @@ export function Checkbox({
     <label className={clsx({
       [`checkbox checkbox-${style} ${className}`]: true,
     })}>
-      <input type="checkbox" name={name} />
+      <input type="checkbox" name={name}/>
       <HiCheck />
     </label>
   )
@@ -117,9 +144,26 @@ export function Radio({
 ) {
   return (
     <label className={clsx({
-      [`radio radio-${style} ${className}`]: true,
+      [`radio checkbox-${style} ${className}`]: true,
     })}>
       <input type="radio" name={name}/>
+    </label>
+  )
+}
+
+export function Switch({
+  style = 'bg',
+  className,
+  name,
+  type = 'checkbox',
+} : Props
+) {
+  return (
+    <label className={clsx({
+      [`switch checkbox-${style} ${className}`]: true,
+    })}>
+      <span></span>
+      <input type={type} name={name}/>
     </label>
   )
 }

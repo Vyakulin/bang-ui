@@ -2,6 +2,7 @@
 
 * {
   transition: all .25s ease-out;
+  box-sizing: border-box;
 }
 
 // Text
@@ -94,7 +95,7 @@
     position: absolute;
     font: inherit;
     color: inherit;
-    width: calc(var(--width) - 6rem);
+    width: calc(var(--width) - 16rem);
     background-color: transparent;
     border: none;
     &:focus {
@@ -155,27 +156,8 @@
   }
 }
 
-// Checkbox
-.checkbox {
-  cursor: pointer;
-  width: 6rem;
-  height: 6rem;
-  border-radius: 1rem;
-  input {
-    opacity: 0;
-    position: absolute;
-  }
-  svg {
-    opacity: 0;
-    position: absolute;
-    width: inherit;
-    height: inherit;
-  }
-  &:hover svg, &:has(input:checked) svg {
-    opacity: 1;
-  }
-}
 
+// Other inputs
 .checkbox-bg {
   @include bg(v.$w, v.$b);
   @include bg-hover(v.$w2, v.$b2);
@@ -193,32 +175,106 @@
   }
 }
 
+// Checkbox
+.checkbox {
+  cursor: pointer;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 1rem;
+  input {
+    display: none;
+  }
+  svg {
+    opacity: 0;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+  &:hover svg, &:has(input:checked) svg {
+    opacity: 1;
+  }
+}
+
 // Radio
 .radio {
   width: 6rem;
   height: 6rem;
-  border-radius: 50%;
+  border-radius: v.$radius;
   cursor: pointer;
   input {
-    opacity: 0;
-    position: absolute;
-    cursor: pointer
+    display: none;
   }
 }
 
-.radio-bg {
-  @include bg(v.$w, v.$b);
-  @include bg-hover(v.$w2, v.$b2);
-  &:has(input:checked) {
-    @include bg(v.$a, v.$w);
-    @include bg-hover(v.$a2, v.$b);
+// Switch
+.switch {
+  display: inline-flex;
+  width: 12rem;
+  height: 6rem;
+  cursor: pointer;
+  align-items: center;
+  padding: 1rem;
+  border-radius: v.$radius;
+  input {
+    display: none;
+  }
+  span {
+    width: 4rem;
+    height: 4rem;
+    background-color: currentColor;
+    border-radius: v.$radius;
+  }
+  &:has(input:checked) span {
+    margin-left: 6rem;
   }
 }
-.radio-ol {
-  @include ol(v.$w);
-  @include ol-hover(v.$w2);
-  &:has(input:checked) {
-    @include ol(v.$a);
-    @include ol-hover(v.$a2);
+.link {
+  display: inline-flex;
+  gap: 2rem;
+  text-decoration: none;
+}
+.link-underline {
+  @extend .link;
+  &::after {
+    background: currentColor;
+    bottom: - v.$outlineWidth;
+    content: "";
+    display: block;
+    height: v.$outlineWidth;
+    width: 0;
+    left: 0;
+    position: absolute;
+    transition: width .25s ease-out;
+  }
+  @media (pointer: fine) {
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+.link-w {
+  color: v.$w;
+  @media (pointer: fine) {
+    &:hover {
+      color: v.$w2;
+    }
+  }
+}
+.link-w2 {
+  color: v.$w;
+  @media (pointer: fine) {
+    &:hover {
+      color: v.$a;
+    }
+  }
+}
+.link-a {
+  color: v.$a;
+  @media (pointer: fine) {
+    &:hover {
+      color: v.$a2;
+    }
   }
 }
