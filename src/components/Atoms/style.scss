@@ -41,15 +41,25 @@
 }
 @mixin ol($color) {
   outline-offset: -1 * v.$outlineWidth;
-  outline-width: v.$outlineWidth;
-  outline-style: solid;
-  outline-color: $color;
+  outline: v.$outlineWidth solid $color;
   color: $color;
 }
 @mixin ol-hover($color) {
   @media (pointer: fine) {
     &:hover {
       @include ol($color);
+    }
+  }
+}
+@mixin line($color) {
+  color: $color;
+  border-bottom: v.$outlineWidth solid $color;
+  border-radius: 0;
+}
+@mixin line-hover($color) {
+  @media (pointer: fine) {
+    &:hover {
+      @include line($color);
     }
   }
 }
@@ -91,6 +101,9 @@
   align-items: center;
   --width: 50rem;
   width: var(--width);
+  h3 {
+    display: flex;
+  }
   input {
     position: absolute;
     font: inherit;
@@ -155,7 +168,19 @@
     @include ol-hover(v.$a2);
   }
 }
-
+.input-line {
+  padding: 2rem 1rem;
+  @include line(v.$w);
+  @include line-hover(v.$w2);
+  &:focus-within {
+    @include line(v.$a);
+    @include line-hover(v.$a2);
+  }
+  &.valid span, &:focus-within span  {
+    margin-left: -1rem;
+    margin-top: -12rem;
+  }
+}
 
 // Other inputs
 .checkbox-bg {
@@ -228,6 +253,8 @@
     margin-left: 6rem;
   }
 }
+
+// Link
 .link {
   display: inline-flex;
   gap: 2rem;
@@ -276,5 +303,84 @@
     &:hover {
       color: v.$a2;
     }
+  }
+}
+
+// Accordion
+.accordion {
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: v.$radius;
+  padding: 0;
+  gap: 0;
+  width: 50rem;
+  .accordion-name {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+  }
+  .accordion-name-open svg {
+    transform: rotate(180deg);
+  }
+  .accordion-text {
+    opacity: 0;
+    height: 0;
+    width: inherit;
+    transform: translateY(-10rem);
+    z-index: -1;
+  }
+  .accordion-text-open {
+    opacity: 1;
+    height: auto;
+    transform: translateY(0);
+    z-index: 0;
+    padding: 1rem 4rem;
+  }
+}
+
+.accordion-bg-w {
+  @include bg(v.$w, v.$b);
+  .accordion-text-open {
+    border-top: v.$outlineWidth solid v.$w2;
+  }
+}
+.accordion-bg-a {
+  @include bg(v.$a, v.$w);
+  .accordion-text-open {
+    border-top: v.$outlineWidth solid v.$a2;
+  }
+}
+.accordion-ol-w {
+  @include ol(v.$w);
+}
+.accordion-ol-a {
+  @include ol(v.$a);
+}
+.accordion-line-w {
+  @include line(v.$w);
+  .accordion-name {
+    padding: 2rem 1rem;
+    @media (pointer: fine) {
+      &:hover {
+        color: v.$w2;
+      }
+    }
+  }
+  .accordion-text-open {
+    padding: 0 1rem 1rem;
+  }
+}
+.accordion-line-a {
+  @include line(v.$a);
+  .accordion-name {
+    padding: 2rem 1rem;
+    @media (pointer: fine) {
+      &:hover {
+        color: v.$a2;
+      }
+    }
+  }
+  .accordion-text-open {
+    padding: 0 1rem 1rem;
   }
 }

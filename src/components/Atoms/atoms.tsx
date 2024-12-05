@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import '@/components/Atoms/style.scss';
 import { MouseEventHandler, useState } from "react";
-import { HiCheck, HiEye, HiEyeSlash } from "react-icons/hi2";
+import { HiCheck, HiEye, HiEyeSlash, HiChevronDown } from "react-icons/hi2";
 import Link from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
 
@@ -165,5 +165,44 @@ export function Switch({
       <span></span>
       <input type={type} name={name}/>
     </label>
+  )
+}
+
+export function Accordion({
+  children, 
+  style = 'bg',
+  text = 'h3',
+  className,
+  color = 'w',
+  name = 'Accordion',
+} : Props
+) {
+
+  const [isHidden, setIsHidden] = useState(true);
+  const click = () => {
+    setIsHidden(!isHidden);
+  }
+
+  return (
+    <div className={clsx({
+      [`accordion accordion-${style}-${color} ${className}`]: true
+    })}>
+      <div className={clsx({
+          [`accordion-name button button-${style}-${color} ${text} ${className}`]: true,
+          [`accordion-name-open`]: !isHidden
+        })}
+        onClick={click}>
+        <span>
+          {name}
+        </span>
+        <HiChevronDown />
+      </div>
+      <span className={clsx({
+        [`accordion-text p`]: true,
+        [`accordion-text-open`]: !isHidden
+      })}>
+        {children}
+      </span>
+    </div>
   )
 }
