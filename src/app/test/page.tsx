@@ -1,4 +1,4 @@
-import { Button, InputPassword, Checkbox, Radio, Switch, Lnk, InputText, Accordion } from "@/components/Atoms/atoms";
+import { Button, InputPassword, Checkbox, Radio, Switch, Lnk, InputText, Accordion, Select } from "@/components/Atoms/atoms";
 import './style.scss';
 import { HiCheck } from "react-icons/hi2";
 
@@ -106,6 +106,25 @@ export default function Home() {
         <Accordion style='line' color="a">
           Some text for the accordion
         </Accordion>
+      </div>
+    </div>
+    <div className="section">
+      <h1 className="h1">Select</h1>
+      <div className="elements">
+        <Select style='bg' color="w">
+          Item1;Item2;Item3
+        </Select>
+        <Select style='bg' color="a">
+          Item1;Item2;Item3
+        </Select>
+      </div>
+      <div className="elements">
+        <Select style='ol' color="w">
+          Item1;Item2;Item3
+        </Select>
+        <Select style='ol' color="a">
+          Item1;Item2;Item3
+        </Select>
       </div>
     </div>
    </div>

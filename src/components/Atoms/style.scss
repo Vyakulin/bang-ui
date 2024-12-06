@@ -315,7 +315,6 @@
   gap: 0;
   width: 50rem;
   .accordion-name {
-    display: flex;
     justify-content: space-between;
     width: inherit;
   }
@@ -382,5 +381,98 @@
   }
   .accordion-text-open {
     padding: 0 1rem 1rem;
+  }
+}
+
+// Select
+.select {
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: v.$radius;
+  padding: 0;
+  gap: 0;
+  width: 50rem;
+  .select-name {
+    width: inherit;
+    justify-content: space-between;
+  }
+  .select-name-open {
+    border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    svg{
+      transform: rotate(180deg);
+    }
+  }
+  .select-items {
+    display: inline-flex;
+    flex-direction: column;
+    pointer-events: none;
+    opacity: 0;
+    width: inherit;
+    height: 0;
+    border-top: v.$outlineWidth solid transparent;
+    border-bottom-left-radius: v.$radius;
+    border-bottom-right-radius: v.$radius;
+    .select-item {
+      display: inline-flex;
+      cursor: pointer;
+      width: inherit;
+      padding: 1rem 4rem;
+      &:nth-last-child(1) {
+        border-bottom-left-radius: v.$radius;
+        border-bottom-right-radius: v.$radius;
+      }
+    }
+  }
+  .select-items-open {
+    position: absolute;
+    pointer-events: all;
+    top: 10rem;
+    height: auto;
+    opacity: 1;
+    z-index: 3;
+  }
+}
+
+.select-bg-w {
+  .select-items {
+    .select-item{
+      @include bg(v.$w, v.$b);
+      @include bg-hover(v.$w2, v.$b2);
+    }
+  }
+  .select-items-open {
+    border-top-color: v.$w2;
+  }
+}
+.select-bg-a {
+  .select-items {
+    .select-item{
+      @include bg(v.$a, v.$w);
+      @include bg-hover(v.$a2, v.$b);
+    }
+  }
+  .select-items-open {
+    border-top-color: v.$a2;
+  }
+}
+.select-ol-w {
+  .select-items {
+    margin-top: -2px;
+    @include ol(v.$w);
+    .select-item{
+      color: v.$w;
+      @include bg-hover(v.$w2, v.$b2);
+    }
+  }
+}
+.select-ol-a {
+  .select-items {
+    margin-top: -2px;
+    @include ol(v.$a);
+    .select-item{
+      color: v.$a;
+      @include bg-hover(v.$a2, v.$b);
+    }
   }
 }

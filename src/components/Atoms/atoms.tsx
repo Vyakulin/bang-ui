@@ -2,10 +2,11 @@
 
 import clsx from "clsx";
 import '@/components/Atoms/style.scss';
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useState, useRef, useEffect, Ref } from "react";
 import { HiCheck, HiEye, HiEyeSlash, HiChevronDown } from "react-icons/hi2";
 import Link from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
+import { useOutsideClick } from "../Hooks/customHooks";
 
 interface Props {
   children?: React.ReactNode,
@@ -203,6 +204,61 @@ export function Accordion({
       })}>
         {children}
       </span>
+    </div>
+  )
+}
+
+export function Select({
+  children, 
+  style = 'bg',
+  text = 'h3',
+  className,
+  color = 'w',
+  name = 'Select',
+} : Props
+) {
+
+  const [isHidden, setIsHidden] = useState(true);
+  const click = () => {
+    setIsHidden(!isHidden);
+  }
+
+  const [selectName, setSelectName] = useState(name);
+  const change = (event: any) => {
+    setSelectName(event.target.innerHTML);
+  }
+
+  const ref = useRef(null);
+  useOutsideClick(ref, setIsHidden);
+
+  return (
+    <div className={clsx({
+      [`select select-${style}-${color} ${className}`]: true
+    })}
+    ref={ref}>
+      <div className={clsx({
+          [`select-name button button-${style}-${color} ${text} ${className}`]: true,
+          [`select-name-open`]: !isHidden
+        })}
+        onClick={click}>
+        <span>
+          {selectName}
+        </span>
+        <HiChevronDown />
+      </div>
+      <ul className={clsx({
+        [`select-items p`]: true,
+        [`select-items-open`]: !isHidden
+      })}>
+        {(children as string).split(';').map((item) => {
+          return (
+            <li className="select-item" key={item + Math.random().toString(10).slice(2)}
+            onClick={change}>
+              {item}
+            </li>
+          )
+        })}
+      </ul>
     </div>
   )
 }
