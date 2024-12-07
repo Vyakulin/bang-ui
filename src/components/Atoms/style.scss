@@ -462,7 +462,7 @@
     @include ol(v.$w);
     .select-item{
       color: v.$w;
-      @include bg-hover(v.$w2, v.$b2);
+      @include bg-hover(v.$w, v.$b);
     }
   }
 }
@@ -472,7 +472,7 @@
     @include ol(v.$a);
     .select-item{
       color: v.$a;
-      @include bg-hover(v.$a2, v.$b);
+      @include bg-hover(v.$a, v.$w);
     }
   }
 }
