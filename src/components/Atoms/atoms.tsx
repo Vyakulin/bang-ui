@@ -19,10 +19,13 @@ interface Props {
   name?: string,
   onClick?: MouseEventHandler,
   type?: string,
+  onlyIcon?: boolean,
+  id?: string,
 }
 
 interface Link extends Props {
   href: Url,
+  target?: string,
 }
 
 export function Button({
@@ -32,14 +35,44 @@ export function Button({
   text = 'h3',
   className,
   onClick,
+  onlyIcon = false,
+  id,
 } : Props
 ) {
   return (
-    <div className={clsx({
-      [`button button-${style}-${color} ${text} ${className}`]: true,
+    <div id={id} className={clsx({
+      [`button${onlyIcon ? '-icon' : ''} button-${style}-${color} ${text} ${className}`]: true,
     })} 
     onClick={onClick}>
       {children}
+    </div>
+  )
+}
+
+export function ButtonSegment({
+  children, 
+  style = 'bg',
+  text = 'h3',
+  className,
+  id,
+} : Props
+) {
+  const items = (children as string).split(';');
+
+  return (
+    <div id={id} className={clsx({
+      [`button-segment button-segment-${style} ${className} ${text}`]: true,
+    })}>
+      {items.map((item, index) => {
+        return (
+          <label key={index}
+          id={index.toString(10)}
+          className={`button button-${style}-w`}>
+            {item}
+            <input type="radio" name={`button-segment${id}`} value={index}/>
+          </label>
+        )
+      })}
     </div>
   )
 }
@@ -51,10 +84,11 @@ export function Lnk({
   text = 'h3',
   className,
   href,
+  target = '_self',
 } : Link
 ) {
   return (
-    <Link href={href} 
+    <Link href={href} target={target}
     className={clsx({
       [`link${style} link-${color} ${text} ${className}`]: true,
     })}>

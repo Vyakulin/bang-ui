@@ -1,4 +1,4 @@
-import { Button, InputPassword, Checkbox, Radio, Switch, Lnk, InputText, Accordion, Select } from "@/components/Atoms/atoms";
+import { Button, InputPassword, Checkbox, Radio, Switch, Lnk, InputText, Accordion, Select, ButtonSegment } from "@/components/Atoms/atoms";
 import './style.scss';
 import { HiCheck } from "react-icons/hi2";
 
@@ -42,10 +42,24 @@ export default function Home() {
       <div className="elements">
         <Button style="bg" color="w">Button<HiCheck /></Button>
         <Button style="bg" color="a">Button<HiCheck /></Button>
+        <Button style="bg" color="w" onlyIcon><HiCheck /></Button>
+        <Button style="bg" color="a" onlyIcon><HiCheck /></Button>
       </div>
       <div className="elements">
         <Button style="ol" color="w">Button<HiCheck /></Button>
         <Button style="ol" color="a">Button<HiCheck /></Button>
+        <Button style="ol" color="w" onlyIcon><HiCheck /></Button>
+        <Button style="ol" color="a" onlyIcon><HiCheck /></Button>
+      </div>
+      <div className="elements">
+        <ButtonSegment style="bg" id="segment1">
+          Button;Button;Button
+        </ButtonSegment>
+      </div>
+      <div className="elements">
+        <ButtonSegment style="ol" id="segment2">
+          Button;Button;Button;Button
+        </ButtonSegment>
       </div>
     </div>
     <div className="section">

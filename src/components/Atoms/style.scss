@@ -73,6 +73,44 @@
   gap: 2rem;
   align-items: center
 }
+.button-icon {
+  @extend .button;
+  padding: 2rem;
+}
+.button-segment {
+  display: inline-flex;
+  .button {
+    border-radius: 0;
+    &:nth-last-child(1) {
+      border-right: none;
+      border-radius: 0 v.$radius v.$radius 0;
+    }
+    &:nth-child(1) {
+      border-radius: v.$radius 0 0 v.$radius;
+    }
+    input {
+      display: none;
+    }
+  }
+}
+.button-segment-bg {
+  .button {
+    border-right: v.$outlineWidth solid v.$w2;
+    &:has(input:checked) {
+      @include bg(v.$a, v.$w);
+      @include bg-hover(v.$a2, v.$b);
+    } 
+  }
+}
+.button-segment-ol {
+  .button {
+    border-right: v.$outlineWidth solid v.$b;
+    &:has(input:checked) {
+      @include ol(v.$a);
+      @include ol-hover(v.$a2);
+    } 
+  }
+}
 
 .button-bg-w {
   @include bg(v.$w, v.$b);
