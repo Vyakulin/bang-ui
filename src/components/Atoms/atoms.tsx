@@ -24,6 +24,7 @@ interface Props {
   required?: boolean,
   pattern?: string,
   checked?: boolean,
+  placeholder?: string
 }
 
 interface Link extends Props {
@@ -110,6 +111,7 @@ export function InputText({
   name,
   required = false,
   pattern,
+  placeholder,
 } : Props
 ) {
   const [isValid, setIsValid] = useState(false);
@@ -119,12 +121,12 @@ export function InputText({
 
   return (
     <label className={clsx({
-      [`input${hint ? '-hint': ''} input-${style} ${text} ${className}`]: true,
-      [`valid`]: isValid
+      [`input${(hint ? '-hint': '') || (placeholder ? '-placeholder' : '')} input-${style} ${text} ${className}`]: true,
+      [`valid`]: isValid,
     })}>
       <span>{children}</span>
       <h3 className="h3">{icon}</h3>
-      <input pattern={pattern} required={required} type="text" onChange={change} name={name}/>
+      <input placeholder={placeholder} pattern={pattern} required={required} type="text" onChange={change} name={name}/>
     </label>
   )
 }

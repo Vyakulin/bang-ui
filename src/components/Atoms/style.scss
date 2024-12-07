@@ -176,6 +176,21 @@
     cursor: pointer;
   }
 }
+.input-placeholder {
+  @extend .input;
+  span {
+    @extend .sm;
+    margin-top: -16rem;
+    margin-left: -4rem;
+    color: v.$w;
+  }
+  &.valid span, &:focus-within span  {
+    opacity: 1;
+  }
+  input::placeholder {
+    color: inherit;
+  }
+}
 
 .input-bg {
   @include bg(v.$w, v.$b);
@@ -187,39 +202,48 @@
     &.valid:hover span {
       color: v.$w2;
     }
+    &.input-placeholder:hover span {
+      color: v.$w2;
+    }
   }
   &:focus-within {
     @include bg(v.$a, v.$w);
-    @include bg-hover(v.$a2, v.$b);
     span {
       color: v.$a;
-    }
-    @media (pointer: fine) {
-      &:hover {
-        span {
-          color: v.$a2;
-        }
-      }
     }
   }
 }
 .input-ol {
   @include ol(v.$w);
   @include ol-hover(v.$w2);
+  @media (pointer: fine) {
+    &:hover span {
+      color: v.$w2;
+    }
+  }
   &:focus-within {
     @include ol(v.$a);
-    @include ol-hover(v.$a2);
+    span {
+      color: v.$a;
+    }
   }
 }
 .input-line {
   padding: 2rem 1rem;
   @include line(v.$w);
   @include line-hover(v.$w2);
+  @media (pointer: fine) {
+    &:hover span {
+      color: v.$w2;
+    }
+  }
   &:focus-within {
     @include line(v.$a);
-    @include line-hover(v.$a2);
+    span {
+      color: v.$a;
+    }
   }
-  &.valid span, &:focus-within span  {
+  &.valid span, &:focus-within span, &.input-placeholder span {
     margin-left: -1rem;
     margin-top: -12rem;
   }
@@ -476,10 +500,11 @@
     pointer-events: none;
     opacity: 0;
     width: inherit;
-    height: 0;
     border-top: v.$outlineWidth solid transparent;
     border-bottom-left-radius: v.$radius;
     border-bottom-right-radius: v.$radius;
+    position: absolute;
+    top: 0;
     .select-item {
       display: inline-flex;
       cursor: pointer;
@@ -492,10 +517,8 @@
     }
   }
   .select-items-open {
-    position: absolute;
     pointer-events: all;
     top: 10rem;
-    height: auto;
     opacity: 1;
     z-index: 3;
   }

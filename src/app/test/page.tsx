@@ -79,6 +79,11 @@ export default function Home() {
         <InputText style="ol" hint>Hint</InputText>
         <InputText style="line" hint>Hint</InputText>
       </div>
+      <div className="elements">
+        <InputText style="bg" placeholder="Placeholder">Input</InputText>
+        <InputText style="ol" placeholder="Placeholder">Input</InputText>
+        <InputText style="line" placeholder="Placeholder">Input</InputText>
+      </div>
     </div>
     <div className="section">
       <h1 className="h1">Checkboxes</h1>
@@ -161,5 +166,4 @@ export default function Home() {
       </div>
     </div>
    </div>
-  );
-}
+  );}
