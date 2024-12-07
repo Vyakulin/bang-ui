@@ -543,3 +543,25 @@
     }
   }
 }
+
+// Tooltip
+*:hover > .tooltip{
+  z-index: 5;
+  opacity: 1;
+}
+.tooltip {
+  pointer-events: none;
+  position: absolute;
+  padding: 2rem;
+  opacity: 0;
+  z-index: -1;
+  width: max-content;
+  border-radius: 1rem;
+}
+
+.tooltip-w {
+  @include bg(v.$w, v.$b);
+}
+.tooltip-a {
+  @include bg(v.$a, v.$w);
+}

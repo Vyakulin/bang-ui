@@ -309,3 +309,19 @@ export function Select({
     </div>
   )
 }
+
+export function Tooltip({
+  children, 
+  className,
+  text = 'sm',
+  color = 'w',
+} : Props
+) {
+  return (
+    <div className={clsx({
+      [`tooltip tooltip-${color} ${text} ${className}`]: true
+    })}>
+      {children}
+    </div>
+  )
+}

@@ -1,4 +1,4 @@
-import { Button, InputPassword, Checkbox, Radio, Switch, Lnk, InputText, Accordion, Select, ButtonSegment } from "@/components/Atoms/atoms";
+import { Button, InputPassword, Checkbox, Radio, Switch, Lnk, InputText, Accordion, Select, ButtonSegment, Tooltip } from "@/components/Atoms/atoms";
 import './style.scss';
 import { HiCheck } from "react-icons/hi2";
 
@@ -139,6 +139,25 @@ export default function Home() {
         <Select style='ol' color="a">
           Item1;Item2;Item3
         </Select>
+      </div>
+    </div>
+    <div className="section">
+      <h1 className="h1">Tooltips</h1>
+      <div className="elements">
+        <div className="h3">
+          HoverMe
+          <Tooltip color="w">
+            Tooltip example<br />
+            Tooltip text 2
+          </Tooltip>
+        </div>
+        <div className="h3">
+          HoverMe
+          <Tooltip color="a">
+            Tooltip example<br />
+            Tooltip text 2
+          </Tooltip>
+        </div>
       </div>
     </div>
    </div>
