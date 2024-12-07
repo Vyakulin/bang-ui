@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import '@/components/Atoms/style.scss';
 import { MouseEventHandler, useState, useRef } from "react";
-import { HiCheck, HiEye, HiEyeSlash, HiChevronDown } from "react-icons/hi2";
+import { HiCheck, HiEye, HiEyeSlash, HiChevronDown, HiXMark } from "react-icons/hi2";
 import Link from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
 import { useOutsideClick } from "../Hooks/customHooks";
@@ -245,7 +245,8 @@ export function Accordion({
         <span>
           {name}
         </span>
-        <HiChevronDown />
+        <HiChevronDown className="arrow"/>
+        <HiXMark className="xmark"/>
       </div>
       <span className={clsx({
         [`accordion-text p`]: true,

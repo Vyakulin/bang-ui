@@ -408,9 +408,19 @@
   .accordion-name {
     justify-content: space-between;
     width: inherit;
+    .xmark {
+      transform: scale(0);
+      position: absolute;
+      right: 4rem;
+    }
   }
-  .accordion-name-open svg {
-    transform: rotate(180deg);
+  .accordion-name-open {
+    .arrow {
+      transform: scale(0);
+    }
+    .xmark {
+      transform: scale(1);
+    }
   }
   .accordion-text {
     opacity: 0;
@@ -450,6 +460,9 @@
   @include line(v.$w);
   .accordion-name {
     padding: 2rem 1rem;
+    .xmark {
+      right: 1rem;
+    }
     @media (pointer: fine) {
       &:hover {
         color: v.$w2;
@@ -464,6 +477,9 @@
   @include line(v.$a);
   .accordion-name {
     padding: 2rem 1rem;
+    .xmark {
+      right: 1rem;
+    }
     @media (pointer: fine) {
       &:hover {
         color: v.$a2;
