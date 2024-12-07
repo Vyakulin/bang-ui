@@ -21,6 +21,9 @@ interface Props {
   type?: string,
   onlyIcon?: boolean,
   id?: string,
+  required?: boolean,
+  pattern?: string,
+  checked?: boolean,
 }
 
 interface Link extends Props {
@@ -105,6 +108,8 @@ export function InputText({
   icon = <HiCheck />,
   hint = false,
   name,
+  required = false,
+  pattern,
 } : Props
 ) {
   const [isValid, setIsValid] = useState(false);
@@ -115,11 +120,11 @@ export function InputText({
   return (
     <label className={clsx({
       [`input${hint ? '-hint': ''} input-${style} ${text} ${className}`]: true,
-      [`valid`]: isValid,
+      [`valid`]: isValid
     })}>
       <span>{children}</span>
       <h3 className="h3">{icon}</h3>
-      <input type="text" onChange={change} name={name}/>
+      <input pattern={pattern} required={required} type="text" onChange={change} name={name}/>
     </label>
   )
 }
@@ -131,6 +136,8 @@ export function InputPassword({
   className,
   hint = false,
   name,
+  required = false,
+  pattern,
 } : Props
 ) {
   const [isValid, setIsValid] = useState(false);
@@ -150,7 +157,7 @@ export function InputPassword({
     })}>
       <span>{children}</span>
       <h3 className="h3 eye" onClick={click}>{isHidden ? <HiEye /> : <HiEyeSlash />}</h3>
-      <input type={isHidden ? "password" : "text"} onChange={change} name={name}/>
+      <input pattern={pattern} required={required} type={isHidden ? "password" : "text"} onChange={change} name={name}/>
     </label>
   )
 }
@@ -159,13 +166,15 @@ export function Checkbox({
   style = 'bg',
   className,
   name,
+  required = false,
+  checked = false,
 } : Props
 ) {
   return (
     <label className={clsx({
       [`checkbox checkbox-${style} ${className}`]: true,
     })}>
-      <input type="checkbox" name={name}/>
+      <input type="checkbox" name={name} required={required} defaultChecked={checked}/>
       <HiCheck />
     </label>
   )
@@ -175,13 +184,15 @@ export function Radio({
   style = 'bg',
   className,
   name,
+  required = false,
+  checked = false,
 } : Props
 ) {
   return (
     <label className={clsx({
-      [`radio checkbox-${style} ${className}`]: true,
+      [`radio radio-${style} ${className}`]: true,
     })}>
-      <input type="radio" name={name}/>
+      <input type="radio" name={name} required={required} defaultChecked={checked}/>
     </label>
   )
 }
@@ -191,6 +202,8 @@ export function Switch({
   className,
   name,
   type = 'checkbox',
+  required = false,
+  checked = false,
 } : Props
 ) {
   return (
@@ -198,7 +211,7 @@ export function Switch({
       [`switch checkbox-${style} ${className}`]: true,
     })}>
       <span></span>
-      <input type={type} name={name}/>
+      <input type={type} name={name} required={required} defaultChecked={checked}/>
     </label>
   )
 }

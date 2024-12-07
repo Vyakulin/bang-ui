@@ -77,6 +77,7 @@
   @extend .button;
   padding: 2rem;
 }
+
 .button-segment {
   display: inline-flex;
   .button {
@@ -155,6 +156,10 @@
   }
   &.valid span, &:focus-within span  {
     opacity: 0;
+  }
+  &:has(input:invalid) {
+    background-color: v.$error;
+    color: v.$w;
   }
 }
 .input-hint {
@@ -235,6 +240,30 @@
   &:has(input:checked) {
     @include ol(v.$a);
     @include ol-hover(v.$a2);
+  }
+}
+.radio-bg {
+  @extend .checkbox-bg;
+}
+.radio-ol {
+  @extend .checkbox-ol;
+  &::before {
+    content: '';
+    display: block;
+    border-radius: 50%;
+    margin-top: 1.5rem;
+    margin-left: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    color: inherit;
+    background-color: currentColor;
+    opacity: 0;
+    transition: all .25s ease-out;
+  }
+  &:has(input:checked) {
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
