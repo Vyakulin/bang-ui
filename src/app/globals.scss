@@ -14,9 +14,24 @@
 body {
   background-color: v.$b;
   color: v.$w;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 .all {
   display: flex;
   gap: 20rem;
   flex-direction: column;
+  margin-top: 28rem;
+}
+
+// Adaptive
+@media screen and (min-width: 1440px) {
+  $width: 360rem;
+  .all {
+    width: $width;
+  }
+  .header {
+    width: $width;
+  }
 }

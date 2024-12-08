@@ -1,0 +1,18 @@
+@use '@/v.scss';
+
+.header {
+  padding: 4rem 8rem;
+  border-radius: 4rem;
+  display: flex;
+  position: fixed;
+  z-index: 10;
+  top: 4rem;
+  background-color: v.$w;
+  align-self: center;
+  align-items: center;
+  justify-content: space-between;
+  .header-links {
+    display: inline-flex;
+    gap: 8rem;
+  }
+}

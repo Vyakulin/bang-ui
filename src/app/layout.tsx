@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import './globals.scss';
+import { Header } from "@/components/Blocks/blocks";
 
 const sfBold = localFont({
   src: '../fonts/SF-Pro-Display-Bold.otf',
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${sfBold.variable} ${sfSemibold.variable} ${sfMedium.variable} ${sfRegular.variable}`}>
+        <Header />
         <div className="all">
           {children}
         </div>

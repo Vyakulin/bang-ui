@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
 import { useOutsideClick } from "../Hooks/customHooks";
 
-interface Props {
+export interface Props {
   children?: React.ReactNode,
   style?: string,
   color?: string,
