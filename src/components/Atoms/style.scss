@@ -80,10 +80,10 @@
 
 .button-segment {
   display: inline-flex;
+  border-radius: v.$radius;
   .button {
     border-radius: 0;
     &:nth-last-child(1) {
-      border-right: none;
       border-radius: 0 v.$radius v.$radius 0;
     }
     &:nth-child(1) {
@@ -94,23 +94,33 @@
     }
   }
 }
-.button-segment-bg {
-  .button {
-    border-right: v.$outlineWidth solid v.$w2;
-    &:has(input:checked) {
-      @include bg(v.$a, v.$w);
-      @include bg-hover(v.$a2, v.$b);
-    } 
+.button-segment-bg-w {
+  gap: v.$outlineWidth;
+  background-color: v.$w2;
+  .button:has(input:checked) {
+    @include bg(v.$a, v.$w);
+    @include bg-hover(v.$a2, v.$b);
   }
 }
-.button-segment-ol {
-  .button {
-    border-right: v.$outlineWidth solid v.$b;
-    &:has(input:checked) {
-      @include ol(v.$a);
-      @include ol-hover(v.$a2);
-    } 
-  }
+.button-segment-bg-b {
+  gap: v.$outlineWidth;
+  background-color: v.$b2;
+  .button:has(input:checked) {
+    @include bg(v.$a, v.$w);
+    @include bg-hover(v.$a2, v.$b);
+  } 
+}
+.button-segment-ol-w {
+  .button:has(input:checked) {
+    @include ol(v.$a);
+    @include ol-hover(v.$a2);
+  } 
+}
+.button-segment-ol-b {
+  .button:has(input:checked) {
+    @include ol(v.$a);
+    @include ol-hover(v.$a2);
+  } 
 }
 
 .button-bg-w {
@@ -121,6 +131,10 @@
   @include bg(v.$a, v.$w);
   @include bg-hover(v.$a2, v.$b);
 }
+.button-bg-b {
+  @include bg(v.$b, v.$w);
+  @include bg-hover(v.$b2, v.$w);
+}
 .button-ol-w {
   @include ol(v.$w);
   @include ol-hover(v.$w2);
@@ -128,6 +142,10 @@
 .button-ol-a {
   @include ol(v.$a);
   @include ol-hover(v.$a2);
+}
+.button-ol-b {
+  @include ol(v.$b);
+  @include ol-hover(v.$b2);
 }
 
 // InputText
@@ -192,7 +210,7 @@
   }
 }
 
-.input-bg {
+.input-bg-w {
   @include bg(v.$w, v.$b);
   @include bg-hover(v.$w2, v.$b2);
   &.valid span {
@@ -213,7 +231,28 @@
     }
   }
 }
-.input-ol {
+.input-bg-b {
+  @include bg(v.$b, v.$w);
+  @include bg-hover(v.$b2, v.$w2);
+  &.valid span {
+    color: v.$b;
+  }
+  @media (pointer: fine) {
+    &.valid:hover span {
+      color: v.$b2;
+    }
+    &.input-placeholder:hover span {
+      color: v.$b2;
+    }
+  }
+  &:focus-within {
+    @include bg(v.$a, v.$w);
+    span {
+      color: v.$a;
+    }
+  }
+}
+.input-ol-w {
   @include ol(v.$w);
   @include ol-hover(v.$w2);
   @media (pointer: fine) {
@@ -228,7 +267,22 @@
     }
   }
 }
-.input-line {
+.input-ol-b {
+  @include ol(v.$b);
+  @include ol-hover(v.$b2);
+  @media (pointer: fine) {
+    &:hover span {
+      color: v.$b2;
+    }
+  }
+  &:focus-within {
+    @include ol(v.$a);
+    span {
+      color: v.$a;
+    }
+  }
+}
+.input-line-w {
   padding: 2rem 1rem;
   @include line(v.$w);
   @include line-hover(v.$w2);
@@ -248,9 +302,29 @@
     margin-top: -12rem;
   }
 }
+.input-line-b {
+  padding: 2rem 1rem;
+  @include line(v.$b);
+  @include line-hover(v.$b2);
+  @media (pointer: fine) {
+    &:hover span {
+      color: v.$b2;
+    }
+  }
+  &:focus-within {
+    @include line(v.$a);
+    span {
+      color: v.$a;
+    }
+  }
+  &.valid span, &:focus-within span, &.input-placeholder span {
+    margin-left: -1rem;
+    margin-top: -12rem;
+  }
+}
 
 // Other inputs
-.checkbox-bg {
+.checkbox-bg-w {
   @include bg(v.$w, v.$b);
   @include bg-hover(v.$w2, v.$b2);
   &:has(input:checked) {
@@ -258,7 +332,15 @@
     @include bg-hover(v.$a2, v.$b);
   }
 }
-.checkbox-ol {
+.checkbox-bg-b {
+  @include bg(v.$b, v.$w);
+  @include bg-hover(v.$b2, v.$w2);
+  &:has(input:checked) {
+    @include bg(v.$a, v.$w);
+    @include bg-hover(v.$a2, v.$b);
+  }
+}
+.checkbox-ol-w {
   @include ol(v.$w);
   @include ol-hover(v.$w2);
   &:has(input:checked) {
@@ -266,11 +348,21 @@
     @include ol-hover(v.$a2);
   }
 }
-.radio-bg {
-  @extend .checkbox-bg;
+.checkbox-ol-b {
+  @include ol(v.$b);
+  @include ol-hover(v.$b2);
+  &:has(input:checked) {
+    @include ol(v.$a);
+    @include ol-hover(v.$a2);
+  }
+}
+.radio-bg-w {
+  @extend .checkbox-bg-w;
+}
+.radio-bg-b {
+  @extend .checkbox-bg-b;
 }
 .radio-ol {
-  @extend .checkbox-ol;
   &::before {
     content: '';
     display: block;
@@ -289,6 +381,12 @@
       opacity: 1;
     }
   }
+}
+.radio-ol-w {
+  @extend .checkbox-ol-w, .radio-ol;
+}
+.radio-ol-b {
+  @extend .checkbox-ol-b, .radio-ol;
 }
 
 // Checkbox
@@ -380,19 +478,19 @@
     }
   }
 }
-.link-w2 {
-  color: v.$w;
-  @media (pointer: fine) {
-    &:hover {
-      color: v.$a;
-    }
-  }
-}
 .link-a {
   color: v.$a;
   @media (pointer: fine) {
     &:hover {
       color: v.$a2;
+    }
+  }
+}
+.link-b {
+  color: v.$b;
+  @media (pointer: fine) {
+    &:hover {
+      color: v.$b2;
     }
   }
 }
@@ -450,11 +548,20 @@
     border-top: v.$outlineWidth solid v.$a2;
   }
 }
+.accordion-bg-b {
+  @include bg(v.$b, v.$w);
+  .accordion-text-open {
+    border-top: v.$outlineWidth solid v.$b2;
+  }
+}
 .accordion-ol-w {
   @include ol(v.$w);
 }
 .accordion-ol-a {
   @include ol(v.$a);
+}
+.accordion-ol-b {
+  @include ol(v.$b);
 }
 .accordion-line-w {
   @include line(v.$w);
@@ -483,6 +590,23 @@
     @media (pointer: fine) {
       &:hover {
         color: v.$a2;
+      }
+    }
+  }
+  .accordion-text-open {
+    padding: 0 1rem 1rem;
+  }
+}
+.accordion-line-b {
+  @include line(v.$b);
+  .accordion-name {
+    padding: 2rem 1rem;
+    .xmark {
+      right: 1rem;
+    }
+    @media (pointer: fine) {
+      &:hover {
+        color: v.$b2;
       }
     }
   }
@@ -562,6 +686,17 @@
     border-top-color: v.$a2;
   }
 }
+.select-bg-b {
+  .select-items {
+    .select-item{
+      @include bg(v.$b, v.$w);
+      @include bg-hover(v.$b2, v.$w2);
+    }
+  }
+  .select-items-open {
+    border-top-color: v.$b2;
+  }
+}
 .select-ol-w {
   .select-items {
     margin-top: -2px;
@@ -579,6 +714,16 @@
     .select-item{
       color: v.$a;
       @include bg-hover(v.$a, v.$w);
+    }
+  }
+}
+.select-ol-b {
+  .select-items {
+    margin-top: -2px;
+    @include ol(v.$b);
+    .select-item{
+      color: v.$b;
+      @include bg-hover(v.$b, v.$w);
     }
   }
 }
@@ -603,4 +748,7 @@
 }
 .tooltip-a {
   @include bg(v.$a, v.$w);
+}
+.tooltip-b {
+  @include bg(v.$b, v.$w);
 }

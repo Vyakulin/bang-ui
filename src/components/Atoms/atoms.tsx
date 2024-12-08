@@ -56,6 +56,7 @@ export function Button({
 export function ButtonSegment({
   children, 
   style = 'bg',
+  color = 'w',
   text = 'h3',
   className,
   id,
@@ -65,13 +66,13 @@ export function ButtonSegment({
 
   return (
     <div id={id} className={clsx({
-      [`button-segment button-segment-${style} ${className} ${text}`]: true,
+      [`button-segment button-segment-${style}-${color} ${className} ${text}`]: true,
     })}>
       {items.map((item, index) => {
         return (
           <label key={index}
           id={index.toString(10)}
-          className={`button button-${style}-w`}>
+          className={`button button-${style}-${color}`}>
             {item}
             <input type="radio" name={`button-segment${id}`} value={index}/>
           </label>
@@ -105,6 +106,7 @@ export function InputText({
   children, 
   style = 'bg',
   text = 'h3',
+  color = 'w',
   className,
   icon = <HiCheck />,
   hint = false,
@@ -121,7 +123,7 @@ export function InputText({
 
   return (
     <label className={clsx({
-      [`input${(hint ? '-hint': '') || (placeholder ? '-placeholder' : '')} input-${style} ${text} ${className}`]: true,
+      [`input${(hint ? '-hint': '') || (placeholder ? '-placeholder' : '')} input-${style}-${color} ${text} ${className}`]: true,
       [`valid`]: isValid,
     })}>
       <span>{children}</span>
@@ -135,6 +137,7 @@ export function InputPassword({
   children, 
   style = 'bg',
   text = 'h3',
+  color = 'w',
   className,
   hint = false,
   name,
@@ -154,7 +157,7 @@ export function InputPassword({
 
   return (
     <label className={clsx({
-      [`input${hint ? '-hint': ''} input-password input-${style} ${text} ${className}`]: true,
+      [`input${hint ? '-hint': ''} input-password input-${style}-${color} ${text} ${className}`]: true,
       [`valid`]: isValid,
     })}>
       <span>{children}</span>
@@ -168,13 +171,14 @@ export function Checkbox({
   style = 'bg',
   className,
   name,
+  color = 'w',
   required = false,
   checked = false,
 } : Props
 ) {
   return (
     <label className={clsx({
-      [`checkbox checkbox-${style} ${className}`]: true,
+      [`checkbox checkbox-${style}-${color} ${className}`]: true,
     })}>
       <input type="checkbox" name={name} required={required} defaultChecked={checked}/>
       <HiCheck />
@@ -185,6 +189,7 @@ export function Checkbox({
 export function Radio({
   style = 'bg',
   className,
+  color = 'w',
   name,
   required = false,
   checked = false,
@@ -192,7 +197,7 @@ export function Radio({
 ) {
   return (
     <label className={clsx({
-      [`radio radio-${style} ${className}`]: true,
+      [`radio radio-${style}-${color} ${className}`]: true,
     })}>
       <input type="radio" name={name} required={required} defaultChecked={checked}/>
     </label>
@@ -203,6 +208,7 @@ export function Switch({
   style = 'bg',
   className,
   name,
+  color = 'w',
   type = 'checkbox',
   required = false,
   checked = false,
@@ -210,7 +216,7 @@ export function Switch({
 ) {
   return (
     <label className={clsx({
-      [`switch checkbox-${style} ${className}`]: true,
+      [`switch checkbox-${style}-${color} ${className}`]: true,
     })}>
       <span></span>
       <input type={type} name={name} required={required} defaultChecked={checked}/>

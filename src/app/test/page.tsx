@@ -18,18 +18,12 @@ export default function Home() {
         <Lnk href='#' color="w">
           Link<HiCheck />
         </Lnk>
-        <Lnk href='#' color="w2">
-          Link<HiCheck />
-        </Lnk>
         <Lnk href='#' color="a">
           Link<HiCheck />
         </Lnk>
       </div>
       <div className="elements">
         <Lnk href='#' color="w" style="-underline">
-          Link<HiCheck />
-        </Lnk>
-        <Lnk href='#' color="w2" style="-underline">
           Link<HiCheck />
         </Lnk>
         <Lnk href='#' color="a" style="-underline">
