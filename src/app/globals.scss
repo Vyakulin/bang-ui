@@ -8,6 +8,8 @@
   position: relative;
   list-style: none;
   flex-wrap: wrap;
+  scrollbar-color: v.$b2 v.$b;
+  scrollbar-width: thin;
 }
 body {
   background-color: v.$b;
