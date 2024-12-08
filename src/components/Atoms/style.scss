@@ -301,6 +301,9 @@
     margin-left: -1rem;
     margin-top: -12rem;
   }
+  input {
+    width: calc(var(--width) - 10rem);
+  }
 }
 .input-line-b {
   padding: 2rem 1rem;
@@ -320,6 +323,9 @@
   &.valid span, &:focus-within span, &.input-placeholder span {
     margin-left: -1rem;
     margin-top: -12rem;
+  }
+  input {
+    width: calc(var(--width) - 10rem);
   }
 }
 
